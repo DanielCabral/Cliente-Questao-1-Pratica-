@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import server.StubCliente;
 
 public class ClienteController implements Initializable {
 	@FXML
@@ -36,8 +37,10 @@ public class ClienteController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		cliente = new StubCliente();
+		System.out.println(cliente.stub);
 		try {
 			arquivosDoServidor = cliente.receberLista();
+			listaDeArquivos.getItems().addAll(arquivosDoServidor);
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -56,16 +59,12 @@ public class ClienteController implements Initializable {
 	
 	public String selecionarItemTableViewItemDeOrcamento(Object  newValue) throws IOException{
 		itemSelecionadoNaLista= (String) newValue;
-		PrintStream saida = new PrintStream(this.socket.getOutputStream());	
-		saida.println(itemSelecionadoNaLista);
+		conteudoArquivo.setText(cliente.enviarArquivo(itemSelecionadoNaLista).getConteudo());
         return itemSelecionadoNaLista;
      }
 	
 	@FXML
 	public void encerrarConexao() throws IOException {
-		PrintStream saida = new PrintStream(this.socket.getOutputStream());	
-		saida.println("fim");
-		escuta.stop();
 		System.exit(0);
 	}
 	

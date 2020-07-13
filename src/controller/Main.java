@@ -10,7 +10,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/FXMLVBoxMain.fxml"));			
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/Cliente.fxml"));			
 			Scene scene = new Scene(root,600,400);
 			primaryStage.setScene(scene);
 			primaryStage.resizableProperty().setValue(Boolean.FALSE);

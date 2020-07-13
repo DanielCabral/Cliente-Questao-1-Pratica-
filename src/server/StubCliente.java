@@ -1,3 +1,4 @@
+package server;
 
 
 
@@ -9,12 +10,14 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import models.Arquivo;
+
 public class StubCliente {
 	private static String nomeServidor = "127.0.0.1";
 	private static int porta = 12345;
 	private static final String NOMEOBJDIST = "SistemaDistribuido";
 	Registry registro;
-	InterfaceDoServidor stub;
+	public InterfaceDoServidor stub;
 	public StubCliente() {
 		try {
 			//Politica de segurança
@@ -38,6 +41,9 @@ public class StubCliente {
 	
 	public ArrayList<String> receberLista() throws RemoteException {
 		return stub.receberLista();
+	}
+	public Arquivo enviarArquivo(String nome) throws RemoteException{
+		return stub.enviarArquivo(nome);
 	}
 	
 	public static void main(String args[]) {
