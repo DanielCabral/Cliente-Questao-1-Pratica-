@@ -59,9 +59,11 @@ public class ClienteController implements Initializable {
 						});
 	}	
 	
+	
 	public String selecionarEReceberArquivo(Object  newValue) throws IOException{
 		itemSelecionadoNaLista= (String) newValue;
 		arquivo = cliente.enviarArquivo(itemSelecionadoNaLista);
+		//Salvar arquivo em disco
 		controller.Arquivo.gravarArquivoTexto("src/dados/"+arquivo.getNome(), arquivo.getConteudo());
 		
 		conteudoArquivo.setText(arquivo.getConteudo());
