@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,6 +47,10 @@ public class StubCliente {
 		return stub.enviarArquivo(nome);
 	}
 	
+	public void receberArquivo(Arquivo arquivo) throws RemoteException, ParseException {
+		stub.receberArquivo(arquivo);
+	}
+	
 	public static void main(String args[]) {
 		try {
 			//Politica de segurança
@@ -55,7 +60,6 @@ public class StubCliente {
 			}
 			
 			System.setProperty("java.security.policy","file:java.policy");
-			System.out.println("Conectando no servidor "+ nomeServidor);
 			
 			// Obtendo refer^encia do serviÂ¸co de registro
 			Registry registro = LocateRegistry.getRegistry(nomeServidor, porta);
